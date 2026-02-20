@@ -15,7 +15,6 @@ export const sendMail = async (
   name,
   surname,
   isAccepted = false,
-  isNotAccepted = false,
   guestsAmount,
 ) => {
   await transporter.sendMail({
@@ -26,8 +25,7 @@ export const sendMail = async (
       <h3>Ինֆորմացիա</h3>
       <p><b>Անուն:</b> ${name}</p>
       <p><b>Ազգանուն:</b> ${surname}</p>
-      <p><b>Ընդունել է հրավերը:</b> ${isAccepted}</p>
-      <p><b>Չի ընդունել հրավերը:</b> ${isNotAccepted}</p>
+      <p><b>Ընդունել է հրավերը:</b> ${isAccepted ? "Այո" : "Ոչ"}</p>
       <p><b>Հյուրերի քանակ:</b> ${guestsAmount}</p>  
     `,
   });
