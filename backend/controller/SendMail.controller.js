@@ -11,14 +11,12 @@ export class SendMailController {
         name,
         surname,
         isAccepted,
-        isNotAccepted,
         guestsAmount,
       } = req.body;
       await sendMailService.sendMail(
         name,
         surname,
         isAccepted,
-        isNotAccepted,
         guestsAmount,
       );
       return res.status(200).json({ message: "Email sent successfully" });
