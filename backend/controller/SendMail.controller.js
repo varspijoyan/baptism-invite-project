@@ -2,7 +2,7 @@ import * as sendMailService from "../mail/sendMail.js";
 
 export class SendMailController {
   constructor() {
-    this.sendMailService = this.sendMailService.bind(this);
+    this.sendMailService = this.sendMailService;
   }
 
   send = async (req, res) => {
