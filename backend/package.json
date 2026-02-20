@@ -9,9 +9,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "express": "^5.2.1",
     "nodemailer": "^8.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3"
   }
 }
