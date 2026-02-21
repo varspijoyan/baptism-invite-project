@@ -1,10 +1,10 @@
 import "./App.css";
-import MainSection from "./components/MainSection";
+import Layout from "./pages/Layout";
 
 function App() {
   return (
     <>
-      <MainSection />
+      <Layout />
     </>
   );
 }
