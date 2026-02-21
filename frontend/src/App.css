@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+:root {
+  --headline-font: "MonsterratARM", Arial, sans-serif;
+  --text-font: "Raleway", Arial, sans-serif;
+  --body-bg-clr: #fff8ef;
+  --primary-clr: #cfb7a5;
+  --secondary-clr: #a88a72;
+  --white-clr: #ffffff;
+  --black-clr: #000000;
+}
+
+body {
+  background-color: var(--body-bg-clr);
+  font-family: var(--text-font);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
