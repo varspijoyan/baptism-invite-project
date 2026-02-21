@@ -1,7 +1,7 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mailRoute from "./route/mailRoute.js";
-import cors from "cors";
 
 dotenv.config();
 
@@ -9,7 +9,12 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://hraver-mkrtutyun.netlify.app/",
+    credentials: true,
+  }),
+);
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", mailRoute);
 
