@@ -1,3 +1,4 @@
+import FormSection from "../components/FormSection";
 import InformationSection from "../components/InformationSection";
 import MainSection from "../components/MainSection";
 
@@ -6,6 +7,7 @@ const Layout = () => {
     <>
       <MainSection />
       <InformationSection />
+      <FormSection />
     </>
   );
 };
