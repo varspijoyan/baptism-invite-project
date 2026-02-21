@@ -6,10 +6,17 @@
   text-decoration: none;
 }
 
+@font-face {
+  font-family: "Arti";
+  src: url("./assets/fonts/Arti\ Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  --headline-font: "MonsterratARM", Arial, sans-serif;
+  --headline-font: "Arti", serif;
   --text-font: "Raleway", Arial, sans-serif;
-  --body-bg-clr: #fff8ef;
+  --body-bg-clr: #fdf8f2;
   --primary-clr: #cfb7a5;
   --secondary-clr: #a88a72;
   --white-clr: #ffffff;

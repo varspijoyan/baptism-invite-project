@@ -1,0 +1,87 @@
+.mainSection {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.imageContent {
+  position: relative;
+}
+
+.imageContent .image img {
+  width: 300px;
+  height: auto;
+  display: block;
+}
+
+.imageShadow {
+  position: absolute;
+  width: 310px;
+  height: 460px;
+  background-color: #d9c5b5c4;
+  top: -5px;
+  left: 0px;
+  z-index: -1;
+  transform: rotate(5deg);
+}
+
+.textContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textContent img {
+  width: 60px;
+  margin: 0 auto 10px;
+}
+
+.textContent h2 {
+  font-family: var(--headline-font);
+  font-weight: 100;
+  font-size: 42px;
+  letter-spacing: 2px;
+  color: var(--black-clr);
+}
+
+.textContent p {
+  margin-top: 10px;
+  font-size: 24px;
+  letter-spacing: 3px;
+  font-family: var(--headline-font);
+  color: var(--secondary-clr);
+}
+
+@media (max-width: 768px) {
+  .textContent h2 {
+    font-size: 32px;
+  }
+
+  .textContent p {
+    font-size: 18px;
+  }
+
+  .imageContent .image img,
+  .imageShadow {
+    width: 240px;
+    height: auto;
+  }
+
+  .imageShadow {
+    height: 360px;
+  }
+
+  .mainSection {
+    padding: 70px;
+  }
+}
