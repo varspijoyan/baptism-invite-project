@@ -20,11 +20,12 @@ const initialState: FormState = {
 
 const FormSection = () => {
   const [showError, setShowError] = useState<ErrorState>({});
+  const [isAccepted, setIsAccepted] = useState<boolean | null>(null);
+
   const [state, action, isPending] = useActionState<FormState, FormData>(
     async (_prevState, formData) => {
       const name = formData.get("name") as string;
       const surname = formData.get("surname") as string;
-      const isAccepted = formData.get("isAccepted") as string;
       const guestsAmount = formData.get("guestsAmount") as string;
 
       const error: ErrorState = {};
@@ -33,7 +34,7 @@ const FormSection = () => {
       // Validation
       if (!name) error.nameError = "Խնդրում ենք մուտքագրել ձեր անունը";
       if (!surname) error.surnameError = "Խնդրում ենք մուտքագրել ձեր ազգանունը";
-      if (!isAccepted)
+      if (isAccepted === null)
         error.isAcceptedError =
           "Խնդրում ենք նշել ձեր մասնակցության ցանկությունը";
       if (!guestsAmount) {
@@ -42,17 +43,15 @@ const FormSection = () => {
         error.guestsAmountError = "Խնդրում ենք մուտքագրել թվային արժեք";
       }
 
-      // If any validation error exists, return it
       if (Object.keys(error).length > 0) {
         return { error };
       }
 
-      // Submit if valid
       try {
         const data = await sendInviteResponse({
           name,
           surname,
-          isAccepted: isAccepted === "yes",
+          isAccepted: isAccepted!,
           guestsAmount,
         });
 
@@ -60,7 +59,10 @@ const FormSection = () => {
           return { error: {}, successMessage: "Ուղարկված է" };
         }
       } catch (err) {
-        return { error: { nameError: "Ուղարկման ժամանակ տեղի ունեցավ սխալ" } };
+        console.error(err);
+        return {
+          error: { nameError: "Ուղարկման ժամանակ տեղի ունեցավ սխալ" },
+        };
       }
 
       return { error };
@@ -83,8 +85,10 @@ const FormSection = () => {
     <section className={styles.formSection}>
       <div className={styles.container}>
         <h2>ԽՆԴՐՈՒՄ ԵՆՔ ՀԱՍՏԱՏԵԼ ՁԵՐ ՆԵՐԿԱՅՈՒԹՅՈՒՆԸ</h2>
-
         <div className={styles.formContainer}>
+          {state.successMessage && (
+            <p className={styles.success}>{state.successMessage}</p>
+          )}
           <form action={action}>
             <input
               type="text"
@@ -95,6 +99,7 @@ const FormSection = () => {
             {showError.nameError && (
               <span className={styles.error}>{showError.nameError}</span>
             )}
+
             <input
               type="text"
               name="surname"
@@ -104,25 +109,31 @@ const FormSection = () => {
             {showError.surnameError && (
               <span className={styles.error}>{showError.surnameError}</span>
             )}
+
             <div className={styles.radioInputs}>
               <label className={styles.radioOption}>
                 <input
                   type="radio"
                   name="isAccepted"
-                  value="yes"
-                  checked={false}
-                  onChange={handleChange}
+                  checked={isAccepted === true}
+                  onChange={() => {
+                    setIsAccepted(true);
+                    setShowError((prev) => ({ ...prev, isAcceptedError: "" }));
+                  }}
                 />
                 <span className={styles.customRadio}></span>
                 Սիրով, կմասնակցենք
               </label>
+
               <label className={styles.radioOption}>
                 <input
                   type="radio"
                   name="isAccepted"
-                  value="no"
-                  checked={false}
-                  onChange={handleChange}
+                  checked={isAccepted === false}
+                  onChange={() => {
+                    setIsAccepted(false);
+                    setShowError((prev) => ({ ...prev, isAcceptedError: "" }));
+                  }}
                 />
                 <span className={styles.customRadio}></span>
                 Ցավոք, չենք կարող ներկա լինել
@@ -131,6 +142,7 @@ const FormSection = () => {
             {showError.isAcceptedError && (
               <span className={styles.error}>{showError.isAcceptedError}</span>
             )}
+
             <input
               type="text"
               name="guestsAmount"
@@ -142,11 +154,13 @@ const FormSection = () => {
                 {showError.guestsAmountError}
               </span>
             )}
+
             <button type="submit" disabled={isPending}>
               {isPending ? "Ուղարկվում է…" : "Ուղարկել"}
             </button>
           </form>
         </div>
+
         <div className={styles.note}>
           <p>Սիրով կսպասենք ձեզ</p>
         </div>

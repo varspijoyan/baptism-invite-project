@@ -19,6 +19,7 @@
   letter-spacing: 3px;
   font-weight: 400;
   font-size: 18px;
+  position: relative;
 }
 
 /* CENTER & CONSTRAIN FORM */
@@ -131,6 +132,13 @@
   margin-top: 40px;
   font-size: 32px;
 }
+/* add this to your CSS */
+.success {
+  color: green;
+  font-size: 20px;
+  position: absolute;
+  top: 130rem;
+}
 
 .error {
   color: red;
@@ -146,5 +154,9 @@
 
   .note p {
     font-size: 24px;
+  }
+
+  .success {
+    font-size: 14px;
   }
 }
