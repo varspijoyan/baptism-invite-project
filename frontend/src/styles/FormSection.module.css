@@ -132,6 +132,12 @@
   font-size: 32px;
 }
 
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+}
+
 @media (max-width: 768px) {
   .formSection {
     padding: 70px;
