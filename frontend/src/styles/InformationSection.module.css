@@ -1,0 +1,51 @@
+.informationSection {
+  margin-top: 100px;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textContent p {
+  font-size: 24px;
+  letter-spacing: 3px;
+  font-weight: 300;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.textContent .churchPlace img,
+.textContent .partyPlace img {
+  width: 200px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .textContent .churchPlace img,
+  .textContent .partyPlace img {
+    width: 140px;
+    height: auto;
+  }
+
+  .informationSection {
+    padding: 70px;
+  }
+}
