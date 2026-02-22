@@ -15,10 +15,10 @@ app.get("/", (req, res) => {
   res.send("Backend is alive");
 });
 
-// app.post("/api/send", (req, res) => {
-//   // handle form submission
-//   res.json({ success: true });
-// });
+app.post("/api/send", (req, res) => {
+  // handle form submission
+  res.json({ success: true });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running on", PORT));
