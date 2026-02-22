@@ -1,24 +1,26 @@
-import express from "express";
 import cors from "cors";
+import express from "express";
+import { sendInviteEmail } from "./email.js";
 
 const app = express();
-
 app.use(express.json());
+app.use(
+  cors({
+    origin: "https://hraver-mkrtutyun.netlify.app",
+  }),
+);
 
-app.use(cors({
-  origin: "https://hraver-mkrtutyun.netlify.app", // <-- NO trailing slash
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  credentials: true, // if you use cookies/auth
-}));
-
-app.get("/", (req, res) => {
-  res.send("Backend is alive");
-});
-
-app.post("/api/send", (req, res) => {
-  // handle form submission
-  res.json({ success: true });
+app.post("/api/send", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log("Received data:", data); // log to check
+    await sendInviteEmail(data);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Email send error:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running on", PORT));
+app.listen(PORT, () => console.log("Server running on port", PORT));
