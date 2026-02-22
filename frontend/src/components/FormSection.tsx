@@ -31,7 +31,6 @@ const FormSection = () => {
       const error: ErrorState = {};
       const guestsAmountFormat = /^\d+$/;
 
-      // Validation
       if (!name) error.nameError = "Խնդրում ենք մուտքագրել ձեր անունը";
       if (!surname) error.surnameError = "Խնդրում ենք մուտքագրել ձեր ազգանունը";
       if (isAccepted === null)
