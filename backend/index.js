@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://hraver-mkrtutyun.netlify.app",
+    origin: "https://baptism-invite-project.vercel.app/",
     methods: ["POST", "GET"],
     credentials: true,
   }),
