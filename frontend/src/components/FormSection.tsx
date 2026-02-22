@@ -17,7 +17,6 @@ const FormSection = () => {
   const onSubmit = async (data: AcceptInviteRequestData) => {
     try {
       await sendInviteResponse(data).unwrap();
-      alert("Ձեր պատասխանն ուղարկվել է հաջողությամբ!");
       reset();
       setIsSuccess(true);
     } catch (error) {
