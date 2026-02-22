@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSendInviteResponseMutation } from "../services/auth/api";
 import styles from "../styles/FormSection.module.css";
@@ -8,18 +9,21 @@ const FormSection = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<AcceptInviteRequestData>();
 
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [sendInviteResponse] = useSendInviteResponseMutation();
   const onSubmit = async (data: AcceptInviteRequestData) => {
     try {
       await sendInviteResponse(data).unwrap();
       alert("Ձեր պատասխանն ուղարկվել է հաջողությամբ!");
       reset();
+      setIsSuccess(true);
     } catch (error) {
       console.error("Error sending invite response:", error);
       alert("Ինչ-որ բան սխալ է տեղի ունեցել, խնդրում ենք փորձել կրկին:");
+      setIsSuccess(false);
     }
   };
   return (
@@ -55,7 +59,7 @@ const FormSection = () => {
                   value="true"
                   {...register("isAccepted", {
                     required: "Խնդրում ենք նշել ձեր մասնակցությունը",
-                    setValueAs: (v) => v === "true", // convert string to boolean
+                    setValueAs: (v) => v === "true"
                   })}
                 />
                 <span className={styles.customRadio}></span>
@@ -95,7 +99,14 @@ const FormSection = () => {
             {errors.guestsAmount && (
               <p className={styles.error}>{errors.guestsAmount.message}</p>
             )}
-            <button type="submit">Հաստատել</button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Հաստատվում է" : "Հաստատել"}
+            </button>
+            {isSuccess && (
+              <p className={styles.success}>
+                Ձեր պատասխանն ուղարկվել է հաջողությամբ!
+              </p>
+            )}
           </form>
         </div>
         <div className={styles.note}>
