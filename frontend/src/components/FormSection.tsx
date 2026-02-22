@@ -1,124 +1,62 @@
-import { useActionState, useEffect, useState } from "react";
-import { sendInviteResponse } from "../services/auth/send";
+import { useForm } from "react-hook-form";
+import { useSendInviteResponseMutation } from "../services/auth/api";
 import styles from "../styles/FormSection.module.css";
-
-type ErrorState = {
-  nameError?: string;
-  surnameError?: string;
-  isAcceptedError?: string;
-  guestsAmountError?: string;
-};
-
-type FormState = {
-  error: ErrorState;
-  successMessage?: string;
-};
-
-const initialState: FormState = {
-  error: {},
-};
+import type { AcceptInviteRequestData } from "../types";
 
 const FormSection = () => {
-  const [showError, setShowError] = useState<ErrorState>({});
-  const [isAccepted, setIsAccepted] = useState<boolean | null>(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<AcceptInviteRequestData>();
 
-  const [state, action, isPending] = useActionState<FormState, FormData>(
-    async (_prevState, formData) => {
-      const name = formData.get("name") as string;
-      const surname = formData.get("surname") as string;
-      const guestsAmount = formData.get("guestsAmount") as string;
-
-      const error: ErrorState = {};
-      const guestsAmountFormat = /^\d+$/;
-
-      if (!name) error.nameError = "Խնդրում ենք մուտքագրել ձեր անունը";
-      if (!surname) error.surnameError = "Խնդրում ենք մուտքագրել ձեր ազգանունը";
-      if (isAccepted === null)
-        error.isAcceptedError =
-          "Խնդրում ենք նշել ձեր մասնակցության ցանկությունը";
-      if (!guestsAmount) {
-        error.guestsAmountError = "Խնդրում ենք մուտքագրել հյուրերի քանակը";
-      } else if (!guestsAmountFormat.test(guestsAmount)) {
-        error.guestsAmountError = "Խնդրում ենք մուտքագրել թվային արժեք";
-      }
-
-      if (Object.keys(error).length > 0) {
-        return { error };
-      }
-
-      try {
-        const data = await sendInviteResponse({
-          name,
-          surname,
-          isAccepted: isAccepted!,
-          guestsAmount,
-        });
-
-        if (data) {
-          return { error: {}, successMessage: "Ուղարկված է" };
-        }
-      } catch (err) {
-        console.error(err);
-        return {
-          error: { nameError: "Ուղարկման ժամանակ տեղի ունեցավ սխալ" },
-        };
-      }
-
-      return { error };
-    },
-    initialState,
-  );
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const key = `${e.target.name}Error` as keyof ErrorState;
-    setShowError((prev) => ({ ...prev, [key]: "" }));
-  };
-
-  useEffect(() => {
-    if (state?.error) {
-      setShowError(state.error);
+  const [sendInviteResponse] = useSendInviteResponseMutation();
+  const onSubmit = async (data: AcceptInviteRequestData) => {
+    try {
+      await sendInviteResponse(data).unwrap();
+      alert("Ձեր պատասխանն ուղարկվել է հաջողությամբ!");
+      reset();
+    } catch (error) {
+      console.error("Error sending invite response:", error);
+      alert("Ինչ-որ բան սխալ է տեղի ունեցել, խնդրում ենք փորձել կրկին:");
     }
-  }, [state]);
-
+  };
   return (
     <section className={styles.formSection}>
       <div className={styles.container}>
         <h2>ԽՆԴՐՈՒՄ ԵՆՔ ՀԱՍՏԱՏԵԼ ՁԵՐ ՆԵՐԿԱՅՈՒԹՅՈՒՆԸ</h2>
         <div className={styles.formContainer}>
-          {state.successMessage && (
-            <p className={styles.success}>{state.successMessage}</p>
-          )}
-          <form action={action}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
-              name="name"
               placeholder="Անուն"
-              onChange={handleChange}
+              {...register("name", {
+                required: "Խնդրում ենք մուտքագրել ձեր անունը",
+              })}
             />
-            {showError.nameError && (
-              <span className={styles.error}>{showError.nameError}</span>
+            {errors.name && (
+              <p className={styles.error}>{errors.name.message}</p>
             )}
-
             <input
               type="text"
-              name="surname"
               placeholder="Ազգանուն"
-              onChange={handleChange}
+              {...register("surname", {
+                required: "Խնդրում ենք մուտքագրել ձեր ազգանունը",
+              })}
             />
-            {showError.surnameError && (
-              <span className={styles.error}>{showError.surnameError}</span>
+            {errors.surname && (
+              <p className={styles.error}>{errors.surname.message}</p>
             )}
-
             <div className={styles.radioInputs}>
               <label className={styles.radioOption}>
                 <input
                   type="radio"
-                  name="isAccepted"
-                  checked={isAccepted === true}
-                  onChange={() => {
-                    setIsAccepted(true);
-                    setShowError((prev) => ({ ...prev, isAcceptedError: "" }));
-                  }}
+                  value="true"
+                  {...register("isAccepted", {
+                    required: "Խնդրում ենք նշել ձեր մասնակցությունը",
+                    setValueAs: (v) => v === "true", // convert string to boolean
+                  })}
                 />
                 <span className={styles.customRadio}></span>
                 Սիրով, կմասնակցենք
@@ -127,39 +65,39 @@ const FormSection = () => {
               <label className={styles.radioOption}>
                 <input
                   type="radio"
-                  name="isAccepted"
-                  checked={isAccepted === false}
-                  onChange={() => {
-                    setIsAccepted(false);
-                    setShowError((prev) => ({ ...prev, isAcceptedError: "" }));
-                  }}
+                  value="false"
+                  {...register("isAccepted", {
+                    required: "Խնդրում ենք նշել ձեր մասնակցությունը",
+                    setValueAs: (v) => v === "true",
+                  })}
                 />
                 <span className={styles.customRadio}></span>
                 Ցավոք, չենք կարող ներկա լինել
               </label>
             </div>
-            {showError.isAcceptedError && (
-              <span className={styles.error}>{showError.isAcceptedError}</span>
+            {errors.isAccepted && (
+              <p className={styles.error}>{errors.isAccepted.message}</p>
             )}
-
+            {errors.isAccepted && (
+              <p className={styles.error}>{errors.isAccepted.message}</p>
+            )}
             <input
               type="text"
-              name="guestsAmount"
               placeholder="Հյուրերի թիվ"
-              onChange={handleChange}
+              {...register("guestsAmount", {
+                required: "Խնդրում ենք մուտքագրել հյուրերի քանակը",
+                pattern: {
+                  value: /^\d+$/,
+                  message: "Խնդրում ենք մուտքագրել միայն թվեր",
+                },
+              })}
             />
-            {showError.guestsAmountError && (
-              <span className={styles.error}>
-                {showError.guestsAmountError}
-              </span>
+            {errors.guestsAmount && (
+              <p className={styles.error}>{errors.guestsAmount.message}</p>
             )}
-
-            <button type="submit" disabled={isPending}>
-              {isPending ? "Ուղարկվում է…" : "Ուղարկել"}
-            </button>
+            <button type="submit">Հաստատել</button>
           </form>
         </div>
-
         <div className={styles.note}>
           <p>Սիրով կսպասենք ձեզ</p>
         </div>

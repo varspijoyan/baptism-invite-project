@@ -1,15 +1,23 @@
-import axios from "axios";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { type AcceptInviteRequestData } from "../../types";
 
-const BACKEND_URL = 'http://localhost:5678';
-
-if (!BACKEND_URL) {
-  throw new Error("VITE_BACKEND_URL is not defined");
-}
-
-export const api = axios.create({
-  baseURL: `${BACKEND_URL}/api`,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
+export const api = createApi({
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3000/api",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }),
+  endpoints: (builder) => ({
+    sendInviteResponse: builder.mutation({
+      query: (data: AcceptInviteRequestData) => ({
+        url: "/send",
+        method: "POST",
+        body: data,
+      }),
+    }),
+  }),
 });
+
+export const { useSendInviteResponseMutation } = api;
