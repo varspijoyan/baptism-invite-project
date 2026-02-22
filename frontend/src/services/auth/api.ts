@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = 'https://baptism-invite-8a1x.onrender.com';
+const BACKEND_URL = 'https://baptism-invite-project-3luw.vercel.app';
 
 if (!BACKEND_URL) {
   throw new Error("VITE_BACKEND_URL is not defined");
