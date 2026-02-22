@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import { sendInviteEmail } from "./email.js";
+import { sendInviteEmail } from "./mail/sendMail.js";
 
 const app = express();
 app.use(express.json());
