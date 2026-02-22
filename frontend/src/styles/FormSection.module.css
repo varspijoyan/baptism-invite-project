@@ -132,10 +132,12 @@
   margin-top: 40px;
   font-size: 32px;
 }
-/* add this to your CSS */
+
 .success {
   color: green;
   font-size: 18px;
+  margin-top: 20px;
+  order: 1;
 }
 
 .error {

@@ -58,7 +58,7 @@ const FormSection = () => {
                   value="true"
                   {...register("isAccepted", {
                     required: "Խնդրում ենք նշել ձեր մասնակցությունը",
-                    setValueAs: (v) => v === "true"
+                    setValueAs: (v) => v === "true",
                   })}
                 />
                 <span className={styles.customRadio}></span>
@@ -101,12 +101,12 @@ const FormSection = () => {
             <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Հաստատվում է" : "Հաստատել"}
             </button>
-            {isSuccess && (
-              <p className={styles.success}>
-                Ձեր պատասխանն ուղարկվել է հաջողությամբ!
-              </p>
-            )}
           </form>
+          {isSuccess && (
+            <p className={styles.success}>
+              Ձեր պատասխանն ուղարկվել է հաջողությամբ!
+            </p>
+          )}
         </div>
         <div className={styles.note}>
           <p>Սիրով կսպասենք ձեզ</p>
