@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import { sendInviteEmail } from "./mail/sendMail.js";
+import { sendMail } from "./mail/sendMail.js";
 
 const app = express();
 app.use(express.json());
@@ -14,7 +14,7 @@ app.post("/api/send", async (req, res) => {
   try {
     const data = req.body;
     console.log("Received data:", data); // log to check
-    await sendInviteEmail(data);
+    await sendMail(data);
     res.json({ success: true });
   } catch (err) {
     console.error("Email send error:", err);
