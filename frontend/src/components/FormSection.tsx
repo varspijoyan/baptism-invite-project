@@ -102,12 +102,12 @@ const FormSection = () => {
               {isSubmitting ? "Հաստատվում է" : "Հաստատել"}
             </button>
           </form>
-          {isSuccess && (
-            <p className={styles.success}>
-              Ձեր պատասխանն ուղարկվել է հաջողությամբ!
-            </p>
-          )}
         </div>
+        {isSuccess && (
+          <p className={styles.success}>
+            Ձեր պատասխանն ուղարկվել է հաջողությամբ!
+          </p>
+        )}
         <div className={styles.note}>
           <p>Սիրով կսպասենք ձեզ</p>
         </div>
