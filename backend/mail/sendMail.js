@@ -1,10 +1,8 @@
-// pages/api/send.ts
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
 
 dotenv.config();
 
-// Create Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
