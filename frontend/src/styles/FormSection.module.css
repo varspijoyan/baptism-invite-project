@@ -136,8 +136,6 @@
 .success {
   color: green;
   font-size: 18px;
-  position: absolute;
-  top: 130rem;
 }
 
 .error {
