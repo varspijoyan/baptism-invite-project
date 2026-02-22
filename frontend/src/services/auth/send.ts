@@ -1,4 +1,4 @@
-import {api} from "./api";
+import { api } from "./api";
 
 interface AcceptInviteRequestData {
   name: string;
@@ -9,6 +9,7 @@ interface AcceptInviteRequestData {
 
 export const sendInviteResponse = async (data: AcceptInviteRequestData) => {
   try {
+    api.defaults.withCredentials = true;
     const response = await api.post("/send", data);
     return response.data;
   } catch (error) {
