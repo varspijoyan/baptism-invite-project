@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 if (!BACKEND_URL) {
   throw new Error("VITE_BACKEND_URL is not defined");
 }
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: `${BACKEND_URL}/api`,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
-
-export default api;
-export { api };
