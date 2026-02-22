@@ -81,9 +81,6 @@ const FormSection = () => {
             {errors.isAccepted && (
               <p className={styles.error}>{errors.isAccepted.message}</p>
             )}
-            {errors.isAccepted && (
-              <p className={styles.error}>{errors.isAccepted.message}</p>
-            )}
             <input
               type="text"
               placeholder="Հյուրերի թիվ"
