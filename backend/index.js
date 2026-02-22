@@ -7,6 +7,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: "https://hraver-mkrtutyun.netlify.app",
+    methods: ["POST", "GET"],
+    credentials: true,
   }),
 );
 
