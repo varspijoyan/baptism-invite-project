@@ -18,7 +18,7 @@ export const sendMail = async (
   guestsAmount,
 ) => {
   await transporter.sendMail({
-    from: "Guest",
+    from: process.env.GMAIL_USER, // must match Gmail account
     to: process.env.GMAIL_USER,
     subject: "Baptism Invitation Response",
     html: `

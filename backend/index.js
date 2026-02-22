@@ -10,17 +10,7 @@ app.use(
   }),
 );
 
-app.post("/api/send", async (req, res) => {
-  try {
-    const data = req.body;
-    console.log("Received data:", data); // log to check
-    await sendMail(data);
-    res.json({ success: true });
-  } catch (err) {
-    console.error("Email send error:", err);
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
+app.post("/api", sendMail);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running on port", PORT));
