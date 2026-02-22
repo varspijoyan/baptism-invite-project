@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://baptism-invite-project.vercel.app/",
+    origin: "http://localhost:5173",
     methods: ["POST", "GET"],
     credentials: true,
   }),
@@ -16,6 +16,3 @@ app.post("/api", sendMail);
 api.get("/api", (req, res) => {
   res.send("Hello from the backend!");
 });
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running on port", PORT));
