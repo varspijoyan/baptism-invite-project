@@ -136,8 +136,6 @@
 .success {
   color: green;
   font-size: 18px;
-  margin-top: 20px;
-  order: 1;
 }
 
 .error {
