@@ -2,23 +2,13 @@ import * as sendMailService from "../mail/sendMail.js";
 
 export class SendMailController {
   constructor() {
-    this.sendMailService = this.sendMailService;
+    this.sendMailService = sendMailService;
   }
 
   send = async (req, res) => {
     try {
-      const {
-        name,
-        surname,
-        isAccepted,
-        guestsAmount,
-      } = req.body;
-      await sendMailService.sendMail(
-        name,
-        surname,
-        isAccepted,
-        guestsAmount,
-      );
+      const { name, surname, isAccepted, guestsAmount } = req.body;
+      await sendMailService.sendMail(name, surname, isAccepted, guestsAmount);
       return res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
       return res

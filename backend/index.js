@@ -1,9 +1,8 @@
 import cors from "cors";
 import express from "express";
-import { sendMail } from "./mail/sendMail.js";
+import mailRoute from "./route/mailRoute.js";
 
 const app = express();
-app.use(express.json());
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -11,8 +10,12 @@ app.use(
     credentials: true,
   }),
 );
+app.use(express.json());
 
-app.post("/api", sendMail);
-api.get("/api", (req, res) => {
+app.use("/api", mailRoute);
+app.get("/api", (req, res) => {
   res.send("Hello from the backend!");
 });
+
+const PORT = process.env.PORT || 5678;
+app.listen(PORT, () => console.log("Server running on port", PORT));
