@@ -4,7 +4,7 @@ import { type AcceptInviteRequestData } from "../../types";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
+    baseUrl: "https://baptism-invite-api.vercel.app/api",
     headers: {
       "Content-Type": "application/json",
     },
