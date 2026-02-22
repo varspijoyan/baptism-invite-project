@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = 'https://baptism-invite-8a1x.onrender.co';
 
 if (!BACKEND_URL) {
   throw new Error("VITE_BACKEND_URL is not defined");
