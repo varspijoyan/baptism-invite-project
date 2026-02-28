@@ -1,14 +1,14 @@
+import partyImage from "../assets/images/vector (1).svg";
 import churchImage from "../assets/images/vector.svg";
 import styles from "../styles/InformationSection.module.css";
-import partyImage from "../assets/images/vector (1).svg";
 
 const InformationSection = () => {
   return (
     <section className={styles.informationSection}>
       <div className={styles.container}>
         <div className={styles.textContent}>
-          <p>ԲԱՐԵԿԱՄՆԵՐ ԵՎ ԸՆԿԵՐՆԵՐ</p>
-          <p>
+          <p className={styles.title}>ԲԱՐԵԿԱՄՆԵՐ ԵՎ ԸՆԿԵՐՆԵՐ</p>
+          <p className={styles.description}>
             Սիրով հրավիրում ենք ձեզ կիսելու մեզ հետ Վարսի, Մոնիկայի և Դավիթի
             Սուրբ Մկրտության լուսավոր օրը։
           </p>
