@@ -32,29 +32,8 @@
   justify-content: center;
 }
 
-.textContent .title,
-.textContent .description {
-  animation: appearOnScroll 2s ease-out;
-  opacity: 0;
-  animation-timeline: view();
-}
-
 .textContent .churchPlace {
   margin-bottom: 70px;
-}
-
-.textContent .churchPlace {
-  animation: appearOnScroll 2s ease-out;
-  opacity: 0;
-  animation-timeline: view();
-  animation-delay: 1s;
-}
-
-.textContent .partyPlace {
-  animation: appearOnScroll 2s ease-out;
-  opacity: 0;
-  animation-timeline: view();
-  animation-delay: 1.5s;
 }
 
 .textContent .churchPlace img,
