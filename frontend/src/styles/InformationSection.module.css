@@ -1,3 +1,7 @@
+/* =========================
+   SECTION LAYOUT
+========================= */
+
 .informationSection {
   margin-top: 100px;
   width: 100%;
@@ -32,35 +36,66 @@
   justify-content: center;
 }
 
+/* =========================
+   BASE ANIMATION (MOBILE SAFE)
+========================= */
+
 .textContent .title,
-.textContent .description {
-  animation: appearOnScroll 1s ease-out;
-  animation-timeline: view();
+.textContent .description,
+.textContent .churchPlace,
+.textContent .partyPlace {
   opacity: 0;
+  animation: appearOnLoad 1s ease-out forwards;
 }
 
 .textContent .churchPlace {
   margin-bottom: 70px;
 }
 
-.textContent .churchPlace {
-  animation: imageAppearOnScroll 1s ease-out;
-  animation-timeline: view();
-  opacity: 0;
-  animation-delay: 300ms;
-}
-
-.textContent .partyPlace {
-  animation: imageAppearOnScroll 1s ease-out;
-  animation-timeline: view();
-  opacity: 0;
-  animation-delay: 400ms;
-}
-
 .textContent .churchPlace img,
 .textContent .partyPlace img {
   width: 200px;
   height: auto;
+}
+
+/* =========================
+   DESKTOP SCROLL ANIMATION
+========================= */
+
+@supports (animation-timeline: view()) {
+  .textContent .title,
+  .textContent .description {
+    animation: appearOnScroll 1s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 20% cover 40%;
+  }
+
+  .textContent .churchPlace {
+    animation: imageAppearOnScroll 1s ease-out forwards;
+    animation-timeline: view();
+    animation-delay: 300ms;
+  }
+
+  .textContent .partyPlace {
+    animation: imageAppearOnScroll 1s ease-out forwards;
+    animation-timeline: view();
+    animation-delay: 400ms;
+  }
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+
+@keyframes appearOnLoad {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes appearOnScroll {
@@ -85,11 +120,14 @@
   }
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 768px) {
   .textContent .churchPlace img,
   .textContent .partyPlace img {
     width: 140px;
-    height: auto;
   }
 
   .informationSection {
