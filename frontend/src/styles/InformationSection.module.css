@@ -134,3 +134,20 @@
     padding: 70px;
   }
 }
+
+@supports NOT (animation-timeline: view()) {
+  .textContent .title,
+  .textContent .description,
+  .textContent .churchPlace,
+  .textContent .partyPlace {
+    animation: appearOnLoad 1s ease-out forwards;
+  }
+
+  .textContent .churchPlace {
+    animation-delay: 0.3s;
+  }
+
+  .textContent .partyPlace {
+    animation-delay: 0.4s;
+  }
+}
