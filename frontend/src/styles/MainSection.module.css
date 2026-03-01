@@ -22,6 +22,9 @@
   width: 300px;
   height: auto;
   display: block;
+  animation: imageAppear 2s linear forwards;
+  opacity: 0;
+  animation-delay: 1s;
 }
 
 .imageShadow {
@@ -33,6 +36,9 @@
   left: 0px;
   z-index: -1;
   transform: rotate(5deg);
+  opacity: 0;
+  animation: imageShadowAppear 2s linear forwards;
+  animation-delay: 2.5s;
 }
 
 .textContent {
@@ -45,6 +51,9 @@
 .textContent img {
   width: 60px;
   margin: 0 auto 10px;
+  animation: crossImageAppear 2s linear forwards;
+  opacity: 0;
+  animation-delay: 3s;
 }
 
 .textContent h2 {
@@ -53,6 +62,9 @@
   font-size: 42px;
   letter-spacing: 2px;
   color: var(--black-clr);
+  animation: textAppear 2s linear forwards;
+  opacity: 0;
+  animation-delay: 3.5s;
 }
 
 .textContent p {
@@ -61,6 +73,54 @@
   letter-spacing: 3px;
   font-family: var(--headline-font);
   color: var(--secondary-clr);
+  animation: textAppear 2s linear forwards;
+  opacity: 0;
+  animation-delay: 4s;
+}
+
+@keyframes imageAppear {
+  from {
+    opacity: 0;
+    transform: rotate(4deg)
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes imageShadowAppear {
+  from {
+    opacity: 0;
+    transform: rotate(10deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes crossImageAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+    
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes textAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {

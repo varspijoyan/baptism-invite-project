@@ -1,6 +1,6 @@
+import crossImg from "../assets/images/Cross.svg";
 import image from "../assets/images/IMG_1347 2 1.svg";
 import styles from "../styles/MainSection.module.css";
-import crossImg from "../assets/images/Cross.svg";
 
 const MainSection = () => {
   return (
@@ -13,11 +13,11 @@ const MainSection = () => {
           </div>
         </div>
         <div className={styles.textContent}>
-           <img src={crossImg} alt="cross image" />
-           <h2>Վարս</h2>
-           <h2>Մոնիկա</h2> 
-           <h2>Դավիթ</h2> 
-           <p>22 • 07 • 2026</p>
+          <img src={crossImg} alt="cross image" />
+          <h2>Վարս</h2>
+          <h2>Մոնիկա</h2>
+          <h2>Դավիթ</h2>
+          <p>22 • 07 • 2026</p>
         </div>
       </div>
     </main>
