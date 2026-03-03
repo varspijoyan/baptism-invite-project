@@ -105,38 +105,6 @@
 }
 
 /* =========================
-   SCROLL-LINKED ANIMATION
-   (modern browsers with view-timeline)
-========================= */
-
-@supports (animation-timeline: view()) {
-  .imageContent .image img {
-    animation: heroImageIn 0.9s ease-out forwards;
-    animation-timeline: view();
-    animation-range: entry 0% cover 35%;
-  }
-
-  .imageShadow {
-    animation: heroShadowIn 0.9s ease-out forwards;
-    animation-timeline: view();
-    animation-range: entry 5% cover 40%;
-  }
-
-  .textContent img {
-    animation: heroCrossIn 0.8s ease-out forwards;
-    animation-timeline: view();
-    animation-range: entry 10% cover 45%;
-  }
-
-  .textContent h2,
-  .textContent p {
-    animation: heroTextIn 0.85s ease-out forwards;
-    animation-timeline: view();
-    animation-range: entry 15% cover 50%;
-  }
-}
-
-/* =========================
    KEYFRAMES
 ========================= */
 
