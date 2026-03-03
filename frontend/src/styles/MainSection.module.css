@@ -18,6 +18,12 @@
   position: relative;
 }
 
+.imageContent .image img {
+  width: 300px;
+  height: auto;
+  display: block;
+}
+
 .imageShadow {
   position: absolute;
   width: 310px;
