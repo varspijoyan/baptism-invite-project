@@ -16,8 +16,8 @@ const InformationSection = () => {
             <img src={churchImage} alt="church image" />
             <div className={styles.textInfo}>
               <p>ՄԿՐՏՈՒԹՅՈՒՆ</p>
-              <p>15:00</p>
-              <p>Մարմաշենի վանք</p>
+              <p>15:30</p>
+              <p>Ամենափրկիչ եկեղեցի</p>
             </div>
           </div>
           <div className={styles.partyPlace}>
