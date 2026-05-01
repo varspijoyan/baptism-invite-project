@@ -24,7 +24,7 @@ const InformationSection = () => {
             <img src={partyImage} alt="party image" />
             <div className={styles.textInfo}>
               <p>ԽՆՋՈՒՅՔ</p>
-              <p>17:00</p>
+              <p>16:30</p>
               <p>Վիկտորիա ռեստորան</p>
             </div>
           </div>
