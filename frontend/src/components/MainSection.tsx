@@ -12,14 +12,14 @@ const MainSection = () => {
           <div className={styles.image}>
             <div className={styles.topRow}>
               <div className={styles.imageCard}>
-                <img src={image1} alt="Portrait of Monika" />
+                <img src={image1} alt="Portrait" />
               </div>
               <div className={`${styles.imageCard} ${styles.imageCardShifted}`}>
-                <img src={image2} alt="Portrait of Vars" />
+                <img src={image2} alt="Portrait" />
               </div>
             </div>
             <div className={`${styles.imageCard} ${styles.bottomCard}`}>
-              <img src={image3} alt="Portrait of Davit" />
+              <img src={image3} alt="Portrait" />
             </div>
           </div>
         </div>
