@@ -1,7 +1,7 @@
 import crossImg from "../assets/images/Cross.svg";
 import image1 from "../assets/images/50F8B581-8FD8-463C-8C70-0AB5D830AAA4 1.svg";
-import image2 from "../assets/images/Снимок экрана 2026—05—01 в 20.02.53 1.svg";
-import image3 from "../assets/images//IMG_6443 1.svg";
+import image2 from "../assets/images/IMG_6446 2 1.svg";
+import image3 from "../assets/images/IMG_6443 1.svg";
 import styles from "../styles/MainSection.module.css";
 
 const MainSection = () => {
