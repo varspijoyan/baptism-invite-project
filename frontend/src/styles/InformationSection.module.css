@@ -133,6 +133,22 @@
   .informationSection {
     padding: 70px;
   }
+
+  .textContent .description {
+    font-size: 16px;
+  }
+
+  .textInfo p:nth-child(3) {
+    font-size: 16px;
+  }
+
+  .textInfo p:nth-child(2) {
+    font-size: 15px;
+  }
+
+  .textInfo p:nth-child(1) {
+    font-size: 16px;
+  }
 }
 
 @supports NOT (animation-timeline: view()) {
