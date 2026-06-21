@@ -20,22 +20,10 @@
   flex: 0 1 520px;
 }
 
-.image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.topRow {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-}
-
 .imageCard {
   --card-offset-y: 0px;
-  width: clamp(140px, 18vw, 220px);
+  width: 100%;
+  max-width: 360px;
   overflow: hidden;
   border-radius: 16px;
   border: 4px solid #fff;
@@ -47,19 +35,9 @@
 
 .imageCard img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
   object-fit: cover;
-}
-
-.imageCardShifted {
-  --card-offset-y: 6px;
-}
-
-.bottomCard {
-  width: clamp(160px, 21vw, 260px);
-  margin-top: -32px;
-  z-index: 2;
 }
 
 .textContent {
@@ -96,14 +74,6 @@
   transform: translateY(calc(var(--card-offset-y) + 24px)) scale(0.96) rotate(2deg);
   animation: heroImageIn 0.9s ease-out forwards;
   animation-delay: 0.1s;
-}
-
-.topRow .imageCard:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.bottomCard {
-  animation-delay: 0.3s;
 }
 
 /* Shadow rotates into place */
@@ -212,19 +182,10 @@
     top: -12px;
   }
 
-  .topRow {
-    gap: 10px;
-  }
-
   .imageCard {
-    width: clamp(132px, 37vw, 182px);
+    max-width: 300px;
     border-width: 3px;
     border-radius: 12px;
-  }
-
-  .bottomCard {
-    width: clamp(148px, 44vw, 220px);
-    margin-top: -20px;
   }
 
   .mainSection {
