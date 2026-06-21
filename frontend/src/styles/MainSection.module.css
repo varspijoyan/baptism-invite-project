@@ -18,6 +18,8 @@
   position: relative;
   width: min(520px, 88vw);
   flex: 0 1 520px;
+  display: flex;
+  justify-content: center;
 }
 
 .imageCard {
@@ -38,6 +40,7 @@
   height: auto;
   display: block;
   object-fit: cover;
+  object-position: center;
 }
 
 .textContent {

@@ -1,5 +1,5 @@
 import crossImg from "../assets/images/Cross.svg";
-import familyPortrait from "../assets/images/family-portrait.png";
+import familyPortrait from "../assets/images/IMG_1347.jpg";
 import styles from "../styles/MainSection.module.css";
 
 const MainSection = () => {
