@@ -83,7 +83,7 @@ const FormSection = () => {
             )}
             <input
               type="text"
-              placeholder="Հյուրերի թիվ"
+              placeholder="Հյուրերի քանակը"
               {...register("guestsAmount", {
                 required: "Խնդրում ենք մուտքագրել հյուրերի քանակը",
                 pattern: {
