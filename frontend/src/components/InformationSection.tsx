@@ -25,7 +25,7 @@ const InformationSection = () => {
             <div className={styles.textInfo}>
               <p>ԽՆՋՈՒՅՔ</p>
               <p>16:30</p>
-              <p>Վիկտորիա ռեստորան</p>
+              <p>Վիկտորիա ռեստորան (փոքր սրահ)</p>
             </div>
           </div>
         </div>
